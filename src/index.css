@@ -1,0 +1,179 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #3b82f6;
+  --color-primary-dark: #1e40af;
+  --color-accent: #06b6d4;
+  --color-accent-light: #22d3ee;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Sync background with JS Particles Logic */
+html.dark {
+  background-color: #0f172a; /* Slate-900 */
+  color-scheme: dark;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  @apply transition-colors duration-300;
+}
+
+/* Global Transition for smoother theme switching */
+* {
+  @apply transition-colors duration-200;
+}
+
+/* Base text contrast improvements */
+.dark body {
+  @apply bg-slate-900 text-slate-100;
+}
+
+body:not(.dark) {
+  @apply bg-white text-slate-900;
+}
+
+/* Enhanced heading visibility */
+.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+  @apply text-white;
+}
+
+/* Glass-morphism effect */
+.glass-effect {
+  @apply backdrop-blur-xl border border-opacity-20;
+}
+
+.dark .glass-effect {
+  @apply border-slate-700/50 bg-slate-900/60; 
+}
+
+body:not(.dark) .glass-effect {
+  @apply border-slate-300 bg-white/70;
+}
+
+/* Card hover effects */
+.card-hover {
+  @apply transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl;
+}
+
+.dark .card-hover {
+  @apply bg-slate-800/40 border-slate-700/50 text-slate-100 hover:bg-slate-800/60;
+}
+
+body:not(.dark) .card-hover {
+  @apply bg-white border-slate-200 text-slate-900 hover:shadow-lg;
+}
+
+/* Button styles */
+.btn-primary {
+  @apply px-6 py-3 rounded-xl font-semibold transition-all duration-300
+  bg-gradient-to-r from-blue-600 to-cyan-600 text-white shadow-lg
+  hover:shadow-xl hover:scale-105 active:scale-95 disabled:opacity-50;
+}
+
+.btn-secondary {
+  @apply px-6 py-3 rounded-xl font-semibold transition-all duration-300
+  border-2 hover:scale-105 active:scale-95;
+}
+
+.dark .btn-secondary {
+  @apply bg-slate-800 border-slate-700 text-slate-100 hover:bg-slate-700;
+}
+
+body:not(.dark) .btn-secondary {
+  @apply bg-white border-slate-300 text-slate-900 hover:bg-slate-50;
+}
+
+/* Badge & Tag styles */
+.badge-primary {
+  @apply px-3 py-1 rounded-full text-sm font-semibold inline-block transition-all;
+}
+
+.dark .badge-primary {
+  @apply bg-blue-600/20 text-blue-300 border border-blue-500/30;
+}
+
+body:not(.dark) .badge-primary {
+  @apply bg-blue-100 text-blue-700 border border-blue-200;
+}
+
+.skill-tag {
+  @apply px-3 py-2 rounded-lg text-sm font-medium border transition-all;
+}
+
+.dark .skill-tag {
+  @apply bg-slate-800/50 text-slate-300 border-slate-700 hover:border-blue-500/50 hover:text-blue-400;
+}
+
+body:not(.dark) .skill-tag {
+  @apply bg-slate-100 text-slate-700 border-slate-200 hover:border-blue-500 hover:text-blue-600;
+}
+
+/* Timeline specific styles */
+.timeline-dot {
+  @apply w-5 h-5 rounded-full border-4 flex items-center justify-center relative z-10;
+}
+
+.dark .timeline-dot {
+  @apply border-slate-800 bg-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.5)];
+}
+
+body:not(.dark) .timeline-dot {
+  @apply border-white bg-blue-600 shadow-md;
+}
+
+/* Input & Search Focus States */
+input, textarea {
+  @apply transition-all duration-200;
+}
+
+input:focus, textarea:focus {
+  @apply outline-none ring-2 ring-blue-500 border-transparent;
+}
+
+.dark input, .dark textarea {
+  @apply bg-slate-800 border-slate-700 text-white placeholder-slate-500;
+}
+
+body:not(.dark) input, body:not(.dark) textarea {
+  @apply bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400;
+}
+
+/* Responsive Typography */
+h1 { @apply text-4xl md:text-5xl lg:text-7xl font-extrabold tracking-tight; }
+h2 { @apply text-3xl md:text-4xl font-bold tracking-tight; }
+h3 { @apply text-xl md:text-2xl font-bold; }
+p { @apply text-base leading-relaxed text-opacity-90; }
+
+/* Custom Animations for Search & Menus */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInTop {
+  from { transform: translateY(-10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-in {
+  animation-duration: 300ms;
+  animation-fill-mode: both;
+  animation-timing-function: ease-out;
+}
+
+.fade-in { animation-name: fadeIn; }
+.slide-in-from-right-2 { animation-name: slideInRight; }
+.slide-in-from-top-2 { animation-name: slideInTop; }

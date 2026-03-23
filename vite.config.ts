@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/', // ✅ ADD THIS LINE
+  base: './', // Use relative paths for assets
   optimizeDeps: {
     exclude: ['lucide-react'],
   },

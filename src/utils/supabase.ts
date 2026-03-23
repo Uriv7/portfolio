@@ -1,11 +1,14 @@
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
-const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://placeholder.supabase.co';
+const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'placeholder-key';
 
-export const supabase = createClient(supabaseUrl, supabaseKey);
+export const supabase = supabaseUrl && supabaseKey && supabaseUrl !== 'https://placeholder.supabase.co'
+  ? createClient(supabaseUrl, supabaseKey)
+  : null;
 
 export const fetchProjects = async () => {
+  if (!supabase) return { data: [], error: null };
   const { data, error } = await supabase
     .from('projects')
     .select('*')
@@ -14,6 +17,7 @@ export const fetchProjects = async () => {
 };
 
 export const fetchArticles = async (limit?: number) => {
+  if (!supabase) return { data: [], error: null };
   let query = supabase
     .from('articles')
     .select('*')
@@ -26,6 +30,7 @@ export const fetchArticles = async (limit?: number) => {
 };
 
 export const fetchTestimonials = async () => {
+  if (!supabase) return { data: [], error: null };
   const { data, error } = await supabase
     .from('testimonials')
     .select('*')
@@ -34,6 +39,7 @@ export const fetchTestimonials = async () => {
 };
 
 export const submitContactForm = async (submission: any) => {
+  if (!supabase) return { data: null, error: 'Supabase not configured' };
   const { data, error } = await supabase
     .from('contactSubmissions')
     .insert([submission]);
@@ -41,6 +47,7 @@ export const submitContactForm = async (submission: any) => {
 };
 
 export const subscribeNewsletter = async (email: string) => {
+  if (!supabase) return { data: null, error: 'Supabase not configured' };
   const { data, error } = await supabase
     .from('subscribers')
     .insert([{ email, subscribedAt: new Date().toISOString(), active: true }]);
@@ -48,6 +55,7 @@ export const subscribeNewsletter = async (email: string) => {
 };
 
 export const fetchCertificates = async () => {
+  if (!supabase) return { data: [], error: null };
   const { data, error } = await supabase
     .from('certificates')
     .select('*')
@@ -56,6 +64,7 @@ export const fetchCertificates = async () => {
 };
 
 export const fetchAchievements = async () => {
+  if (!supabase) return { data: [], error: null };
   const { data, error } = await supabase
     .from('achievements')
     .select('*')
@@ -64,6 +73,7 @@ export const fetchAchievements = async () => {
 };
 
 export const incrementProjectViews = async (projectId: string) => {
+  if (!supabase) return { data: null, error: 'Supabase not configured' };
   const { data: current } = await supabase
     .from('projects')
     .select('views')
@@ -80,6 +90,7 @@ export const incrementProjectViews = async (projectId: string) => {
 };
 
 export const incrementArticleReads = async (articleId: string) => {
+  if (!supabase) return { data: null, error: 'Supabase not configured' };
   const { data: current } = await supabase
     .from('articles')
     .select('reads')

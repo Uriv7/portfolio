@@ -47,7 +47,7 @@ const defaultProjects: Project[] = [
   {
     id: 'geoscale',
     name: "URIV-GEOSCALE",
-    description: "High-performance geospatial engine for address-to-coordinate conversion and spatial indexing of 1.5GB+ OpenStreetMap data.",
+    description: "High-performance geospatial engine for address-to-coordinate conversion and spatial indexing of 15GB+ OpenStreetMap data.",
     tech: ["Python", "FastAPI", "PostGIS", "Docker", "osm2pgsql"],
     githubLink: "https://github.com/Uri7/uriv-geoscale",
     liveLink: "#",
